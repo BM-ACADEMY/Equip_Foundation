@@ -1,0 +1,130 @@
+/*
+ * Equip Foundation design tokens: the ONE place to change the look of the site.
+ * Components only use these tokens (bg-brand-700, text-ink, rounded-card ...),
+ * never raw colours, so editing this file restyles everything.
+ *
+ * Brand colours are sampled from the client's logo (public/images/logo/Logo.png)
+ * and the approved header reference:
+ *   crimson banner  #a70328 -> #72001a   olive menu bar  #a2b16e
+ *   olive tagline   #989860              lime ring       #b8f038
+ * ⚠ The font pairing is still a TEMPORARY placeholder (no client font
+ * preference yet). Replace --font-sans / --font-heading when confirmed.
+ */
+
+@theme {
+  /* ---- Brand colours (from the logo) ---------------------------------- */
+  /* Primary: logo crimson. 600 = banner top, 800 = banner bottom. */
+  --color-brand-50: #fdf1f4;
+  --color-brand-100: #fadde5;
+  --color-brand-200: #f3b8c8;
+  --color-brand-300: #e884a0;
+  --color-brand-400: #d9476d;
+  --color-brand-500: #c1123f;
+  --color-brand-600: #a70328;
+  --color-brand-700: #8e0222;
+  --color-brand-800: #72001a;
+  --color-brand-900: #4f0012;
+  --color-brand-950: #33000c;
+  /* Secondary: olive / sage from the menu bar and the logo tagline. */
+  --color-accent-50: #f6f8ee;
+  --color-accent-100: #ebf0dc;
+  --color-accent-200: #dbe2c4;
+  --color-accent-300: #c8d2a1;
+  --color-accent-400: #b4c184;
+  --color-accent-500: #a2b16e;
+  --color-accent-600: #8a9a58;
+  --color-accent-700: #6d7b43;
+  --color-accent-800: #555f36;
+  --color-accent-900: #3f472a;
+  /* Donate button: the lime ring in the logo. Dark text on top. */
+  --color-donate: #b8f038;
+  --color-donate-hover: #a3d92a;
+  /* Header banner gradient = the background of Logo.png, so the logo blends
+     into the banner. Keep these in sync with the logo file. */
+  --color-banner-top: #a70328;
+  --color-banner-bottom: #72001a;
+
+  /* ---- Neutrals (warm, matching the reference page background) --------- */
+  --color-ink: #241f1a;
+  --color-ink-muted: #5a514a;
+  --color-line: #e4ded5;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f7f5f0;
+
+  /* ---- Font pairing: TEMPORARY, pending client preference -------------- */
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Source Serif 4 Variable', ui-serif, Georgia, serif;
+
+  /* ---- Typography scale ------------------------------------------------ */
+  --text-display: 3rem;
+  --text-display--line-height: 1.1;
+  --text-display--letter-spacing: -0.02em;
+  --text-h1: 2.25rem;
+  --text-h1--line-height: 1.15;
+  --text-h2: 1.75rem;
+  --text-h2--line-height: 1.25;
+  --text-h3: 1.25rem;
+  --text-h3--line-height: 1.35;
+  --text-lead: 1.125rem;
+  --text-lead--line-height: 1.7;
+  --text-body: 1rem;
+  --text-body--line-height: 1.7;
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.5;
+
+  /* ---- Spacing (default 0.25rem step) + layout rhythm ------------------ */
+  --spacing-section: 4rem; /* vertical padding of a page section (py-section) */
+  --spacing-section-lg: 6rem; /* same, on large screens (lg:py-section-lg) */
+  --container-page: 72rem; /* max-w-page: standard content width */
+  --container-narrow: 48rem; /* max-w-narrow: reading width for text pages */
+  --container-wide: 80rem; /* max-w-wide */
+
+  /* ---- Radius & shadows ------------------------------------------------ */
+  --radius-card: 1rem;
+  --radius-button: 0.5rem;
+  --radius-chip: 999px;
+  --shadow-card:
+    0 1px 2px rgb(36 31 26 / 0.06), 0 4px 12px rgb(36 31 26 / 0.06);
+  --shadow-card-hover:
+    0 2px 4px rgb(36 31 26 / 0.08), 0 12px 28px rgb(36 31 26 / 0.12);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-600);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

@@ -1,12 +1,14 @@
 import { Outlet } from 'react-router-dom'
+import Header from './layout/Header'
 import ScrollToTop from './ScrollToTop'
 
-// Shared page shell. Header, mobile menu and footer are added in Tasks 2.1 / 2.2.
+// Shared page shell. The footer is added in Task 2.2.
 export default function Layout() {
   return (
     <>
       <ScrollToTop />
-      <main>
+      <Header />
+      <main id="main" tabIndex={-1} className="outline-none">
         <Outlet />
       </main>
     </>

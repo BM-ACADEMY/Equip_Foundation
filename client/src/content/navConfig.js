@@ -53,3 +53,22 @@ export const allPaths = [
   .filter(Boolean)
   .map((path) => path.split('#')[0])
   .filter((path, index, list) => list.indexOf(path) === index)
+
+// The always-visible Donate button in the header.
+const donatePage = involvePages.find((page) => page.slug === 'donate')
+export const donateLink = {
+  label: donatePage.title,
+  path: `/get-involved/${donatePage.slug}`,
+}
+
+// True when the menu item (or one of its children) is the current page.
+export const isItemActive = (item, pathname) => {
+  const matches = (path) => {
+    if (!path) return false
+    const page = path.split('#')[0]
+    return page === '/' ? pathname === '/' : pathname.startsWith(page)
+  }
+  return (
+    matches(item.path) || (item.children ?? []).some((c) => matches(c.path))
+  )
+}

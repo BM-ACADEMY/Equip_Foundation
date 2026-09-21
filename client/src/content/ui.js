@@ -5,3 +5,13 @@ export const notFound = {
   text: 'The page you are looking for does not exist.',
   homeLabel: 'Back to Home',
 }
+
+// Accessible labels and short interface text for the site header.
+export const nav = {
+  primaryLabel: 'Primary',
+  mobileLabel: 'Mobile',
+  menu: 'Menu',
+  closeMenu: 'Close menu',
+  submenu: 'submenu',
+  skipToContent: 'Skip to main content',
+}

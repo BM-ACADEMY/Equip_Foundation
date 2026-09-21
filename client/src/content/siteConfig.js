@@ -15,6 +15,13 @@ export const siteConfig = {
     'Equipping people and communities to Equip Themselves',
   ],
   vision: 'People and communities equipped to shape their own future.',
+
+  // Client-supplied brand images (public/images/logo/).
+  // The header artwork is decorative, so it has no alt text.
+  assets: {
+    logo: { src: '/images/logo/Logo.png', width: 400, height: 113 },
+    headerImage: '/images/logo/selfmadesilai.jpeg',
+  },
   // Base URL is needed for canonical links / sitemap. Confirm with the client.
   siteUrl: '[Website Domain]',
 
