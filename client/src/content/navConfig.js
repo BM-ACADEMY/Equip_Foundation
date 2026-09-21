@@ -54,6 +54,9 @@ export const allPaths = [
   .map((path) => path.split('#')[0])
   .filter((path, index, list) => list.indexOf(path) === index)
 
+// Where the logo links to (the Home menu item).
+export const homePath = navConfig[0].path
+
 // The always-visible Donate button in the header.
 const donatePage = involvePages.find((page) => page.slug === 'donate')
 export const donateLink = {

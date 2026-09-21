@@ -26,7 +26,7 @@ export default function Card({
         variants[variant],
         paddings[padding],
         hoverable &&
-          'transition-shadow duration-200 hover:shadow-card-hover motion-safe:transition-transform motion-safe:hover:-translate-y-0.5',
+          'group transition-[box-shadow,translate,border-color] duration-200 hover:border-brand-300 hover:shadow-card-hover motion-safe:hover:-translate-y-1',
         className,
       )}
       {...rest}

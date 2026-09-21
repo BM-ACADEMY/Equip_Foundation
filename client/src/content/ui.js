@@ -15,3 +15,28 @@ export const nav = {
   submenu: 'submenu',
   skipToContent: 'Skip to main content',
 }
+
+// Site footer labels (client copy for the footer comes from about.js,
+// contact.js and siteConfig.js).
+export const footer = {
+  quickLinksLabel: 'Quick links',
+  socialLabel: 'Social media',
+  registered: 'Registered',
+  // Shown only once the number is confirmed in siteConfig.registration.
+  registrationIds: [
+    ['80G', 'section80G'],
+    ['12A', 'section12A'],
+    ['FCRA', 'fcra'],
+    ['PAN', 'pan'],
+  ],
+  rights: 'All rights reserved.',
+}
+
+// Shown on pages whose content task is not built yet.
+export const placeholder = {
+  note: 'This page is being prepared.',
+}
+
+export const backToTop = {
+  label: 'Back to top',
+}

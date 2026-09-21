@@ -1,21 +1,24 @@
 // About Us copy. **double asterisks** mark the bold phrases from the client
 // document. Render them with a small helper (Task 1.2 / page tasks).
 
+import { siteConfig } from './siteConfig'
+
+const { impact, registration } = siteConfig
+
 export const history = {
   title: 'Our History',
+  // Milestones for the <Timeline> component ({ year, title, text? }).
+  // Years and registration facts come from siteConfig.js. The client's own
+  // wording is in `paragraphs` below, so the milestones carry short labels only.
+  timelineLabel: 'Timeline',
   timeline: [
+    { year: String(impact.established), title: 'Founded' },
     {
-      year: '2005',
-      text: 'A group of committed and passionate professionals come together with a shared concern for the needs of deprived and vulnerable communities.',
+      year: String(impact.registered),
+      // "Registered as a Trust, Tirukoilur"
+      title: `Registered as a ${registration.type}, ${registration.base.split(',')[0]}`,
     },
-    {
-      year: '2011',
-      text: 'Formally established as a non-profit, non-governmental organisation and registered as a Trust, with its base in Tirukoilur, Tamil Nadu.',
-    },
-    {
-      year: 'Today',
-      text: 'Builds on a journey of more than two decades with a continued commitment to human dignity, social justice, empowerment and sustainable development.',
-    },
+    { year: 'Today' },
   ],
   paragraphs: [
     'Equip Foundation traces its beginnings to **2005**, when a group of committed and passionate professionals came together with a shared concern for the needs of deprived and vulnerable communities. The idea emerged from a desire to create a collective platform through which their professional knowledge, experience and commitment could be channelled towards meaningful social development. The founding group believed that sustainable change should go beyond providing immediate assistance and should instead equip individuals and communities with the knowledge, skills, opportunities and confidence to become more self-reliant.',
@@ -62,11 +65,25 @@ export const missionVisionValues = {
 
 export const approach = {
   title: 'Our Approach',
-  paragraphs: [
-    'At **Equip Foundation**, we believe that every individual and community has strengths, skills, knowledge, relationships, and resources that can become the foundation for positive change. Our approach focuses on **equipping people and communities** with the knowledge, skills, opportunities, and support they need to identify their own priorities, make informed decisions, and take action. We work with communities as partners, respecting their dignity, experience, and local knowledge rather than treating them simply as beneficiaries.',
-    'We follow an **Asset-Based Community Development (ABCD)** approach that builds on what communities already have and can do. We identify and strengthen local assets such as people, skills, institutions, natural resources, community networks, and local leadership. By bringing these strengths together and encouraging collective action, we help communities develop locally owned solutions, strengthen participation, and build confidence and self-reliance.',
-    'Our work is guided by the principles of **sustainable and inclusive development**. We seek solutions that create lasting social, economic, and environmental benefits while strengthening the resilience of communities. Through education, capacity building, sustainable livelihoods, rights-based action, partnerships, and knowledge sharing, we connect local action with wider development opportunities. Our aim is not only to address immediate needs, but to **equip communities to create and sustain positive change for themselves and future generations**.',
+  // The three approach blocks, in the order of the client document. The titles
+  // name each block (equipping people, ABCD, sustainable and inclusive
+  // development). `text` is the client's own wording, unchanged.
+  blocks: [
+    {
+      title: 'Equipping People',
+      text: 'At **Equip Foundation**, we believe that every individual and community has strengths, skills, knowledge, relationships, and resources that can become the foundation for positive change. Our approach focuses on **equipping people and communities** with the knowledge, skills, opportunities, and support they need to identify their own priorities, make informed decisions, and take action. We work with communities as partners, respecting their dignity, experience, and local knowledge rather than treating them simply as beneficiaries.',
+    },
+    {
+      title: 'Asset-Based Community Development',
+      text: 'We follow an **Asset-Based Community Development (ABCD)** approach that builds on what communities already have and can do. We identify and strengthen local assets such as people, skills, institutions, natural resources, community networks, and local leadership. By bringing these strengths together and encouraging collective action, we help communities develop locally owned solutions, strengthen participation, and build confidence and self-reliance.',
+    },
+    {
+      title: 'Sustainable and Inclusive Development',
+      text: 'Our work is guided by the principles of **sustainable and inclusive development**. We seek solutions that create lasting social, economic, and environmental benefits while strengthening the resilience of communities. Through education, capacity building, sustainable livelihoods, rights-based action, partnerships, and knowledge sharing, we connect local action with wider development opportunities. Our aim is not only to address immediate needs, but to **equip communities to create and sustain positive change for themselves and future generations**.',
+    },
   ],
+  // Pull quote (the closing phrase of the third block). The PullQuote component
+  // supplies the opening quotation mark visually.
   quote:
     'Equip communities to create and sustain positive change for themselves and future generations.',
 }

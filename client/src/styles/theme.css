@@ -124,7 +124,73 @@
     *::before,
     *::after {
       animation-duration: 0.01ms !important;
-      transition-duration: 0.01ms !important;
+      /* Exactly 0s (not near-zero): a tiny non-zero transition would delay
+         inherited properties such as `visibility` by a frame. */
+      transition-duration: 0s !important;
+      transition-delay: 0s !important;
+    }
+  }
+}
+
+/* ---- Motion ------------------------------------------------------------
+ * Tokens + the three reusable motion patterns. Everything here is switched
+ * off by the prefers-reduced-motion rule in the base layer (and by print). */
+:root {
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --duration-fast: 150ms;
+  --duration-reveal: 600ms;
+  --reveal-distance: 1rem;
+}
+
+@layer components {
+  /* Fade + slide show/hide (dropdowns, mobile menu, back-to-top). Set
+     data-open="true" to show. `visibility` flips at once on open and after the
+     fade on close, so a hidden panel is never focusable or read by screen
+     readers. Override the slide start with [--fade-offset:...]. */
+  .fade-toggle {
+    opacity: 0;
+    visibility: hidden;
+    translate: 0 var(--fade-offset, -0.25rem);
+    transition:
+      opacity var(--duration-fast) var(--ease-standard),
+      translate var(--duration-fast) var(--ease-standard),
+      visibility 0s linear var(--duration-fast);
+  }
+  .fade-toggle[data-open='true'] {
+    opacity: 1;
+    visibility: visible;
+    translate: 0 0;
+    transition-delay: 0s;
+  }
+  /* Reduced motion: switch at once (visibility must flip immediately so
+     focus can move into a menu the moment it opens). */
+  @media (prefers-reduced-motion: reduce) {
+    .fade-toggle {
+      transition: none !important;
+    }
+  }
+
+  /* Scroll reveal (see the Reveal component). Content is fully visible until
+     JavaScript arms it, so no-JS, pre-rendered HTML and search engines always
+     see everything. */
+  /* Hiding is instant (it happens off-screen, before paint); only the reveal
+     itself is animated. */
+  .reveal[data-reveal='hidden'] {
+    opacity: 0;
+    translate: 0 var(--reveal-distance);
+  }
+  .reveal[data-reveal='shown'] {
+    opacity: 1;
+    translate: 0 0;
+    transition:
+      opacity var(--duration-reveal) var(--ease-standard),
+      translate var(--duration-reveal) var(--ease-standard);
+  }
+  @media (prefers-reduced-motion: reduce), print {
+    .reveal[data-reveal] {
+      opacity: 1 !important;
+      translate: none !important;
+      transition: none !important;
     }
   }
 }

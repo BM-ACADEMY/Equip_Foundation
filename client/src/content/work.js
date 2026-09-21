@@ -6,7 +6,9 @@
 //   approach  paragraphs   "what Equip Foundation does"
 //   chips     strings      key focus items shown as chips
 //   cards     {title,text} pillar cards
-//   sections  {title, body[], highlight?, timeline?}  sub-sections
+//   sections  {title?, body[], highlight?, timeline?}  sub-sections. `title` is left
+//             out for a block that is just a paragraph (Empowerment's closing one).
+//             `timeline` is [{ year, title, text? }], the shape <Timeline> uses.
 
 import { siteConfig } from './siteConfig'
 
@@ -77,21 +79,21 @@ export const workPages = [
     title: 'Human Rights',
     sections: [
       {
-        title: 'Rights-based approach',
+        title: 'Rights-Based Approach',
         body: [
           'Equip Foundation believes that **human rights, dignity, equality, justice and freedom are fundamental to sustainable community development**. We promote a rights-based approach that enables individuals and communities to understand their rights, claim their entitlements and participate in decisions that affect their lives. Our human rights work focuses particularly on children, women, workers and other vulnerable and marginalised groups, while promoting equality, non-discrimination, social justice and access to justice.',
           'Equip Foundation works with communities, civil society organisations, institutions and other stakeholders to strengthen **human rights awareness, legal literacy and community-based protection mechanisms**. Our interventions include awareness and capacity-building programmes, community mobilisation, leadership development, rights education, legal empowerment, referral and institutional linkages, and advocacy on issues affecting vulnerable people. We seek to strengthen the capacity of communities to identify rights violations, prevent exploitation, access available services and entitlements, and engage with appropriate institutions for protection and justice.',
         ],
       },
       {
-        title: 'Child rights & protection',
+        title: 'Child Rights & Protection',
         highlight: true,
         body: [
           "**Child rights and protection are a key priority of Equip Foundation.** We work towards creating safe, inclusive and child-friendly families, schools and communities by promoting children's rights to **survival, development, education, protection and participation**. Our interventions focus on the prevention of **early and child marriage, child sexual abuse and exploitation, child labour, trafficking, violence, neglect and other forms of abuse**. We promote school enrolment, retention and prevention of school dropouts, particularly among vulnerable children, along with awareness on child protection laws, safe and unsafe behaviour, online safety and children's right to be heard. We also seek to strengthen parents, teachers, community leaders and frontline workers to recognise risks, respond appropriately and build community-based systems that protect children and promote their well-being, education and future opportunities.",
         ],
       },
       {
-        title: 'Women, women workers and marginalised communities',
+        title: 'Women, Women Workers and Marginalised Communities',
         body: [
           'Equip Foundation also promotes the rights and empowerment of **women, women workers and other marginalised communities**. Particular attention is given to women workers in the **textile and garment industries**, including awareness of labour rights, decent working conditions, fair wages, working hours, leave, social security, occupational health and safety, workplace dignity, prevention of discrimination and sexual harassment, and access to grievance-redressal mechanisms. Our work also encompasses the rights of persons with disabilities, migrant and informal workers, disadvantaged families and other vulnerable groups, with an emphasis on **gender justice, inclusion, economic and social empowerment, legal awareness and access to justice**. Through these efforts, Equip Foundation seeks to build communities where every person—especially every child, woman and vulnerable individual—can live with **dignity, safety, equality and opportunity**.',
         ],
@@ -103,17 +105,20 @@ export const workPages = [
     title: 'Humanitarian Aid',
     sections: [
       {
-        title: 'Our humanitarian approach',
+        title: 'Approach',
         body: [
           'Equip Foundation is committed to supporting **individuals, families and communities affected by disasters, emergencies and humanitarian crises**. Our humanitarian approach focuses on timely, inclusive and needs-based assistance, while ensuring that the dignity, safety and rights of affected people are protected. We recognise that disasters can have disproportionate impacts on children, women, older persons, persons with disabilities, low-income households and other vulnerable groups, and therefore integrate protection, inclusion and community participation into humanitarian response and recovery.',
         ],
       },
       {
-        title: 'Disaster response, 2011–2021',
+        title: 'Disaster Timeline (2011–2021)',
         body: [
           'Over the years, Equip Foundation and its team have been involved in **emergency response, relief, recovery and disaster risk reduction initiatives** in Tamil Nadu, responding to major disasters including the **2011 Thane Cyclone, 2012 Cyclone Nilam, 2015 floods, 2016 Cyclone Vardah, 2016–17 drought, 2018 Cyclone Gaja, and the 2021 extreme rainfall and flooding**. These interventions have included rapid needs assessment, emergency relief and essential supplies, support to affected families, community mobilisation, coordination with local stakeholders, restoration of livelihoods and basic services, and strengthening community preparedness and resilience. The experience gained through these emergencies has strengthened our understanding of community-led disaster response and the importance of linking immediate humanitarian assistance with longer-term recovery and resilience.',
         ],
-        timeline: siteConfig.impact.disasters,
+        timeline: siteConfig.impact.disasters.map(({ year, name }) => ({
+          year,
+          title: name,
+        })),
       },
       {
         title: 'COVID-19 response',
@@ -122,7 +127,7 @@ export const workPages = [
         ],
       },
       {
-        title: 'Disaster management cycle',
+        title: 'Disaster Management Cycle',
         body: [
           'Equip Foundation seeks to strengthen the complete **disaster management cycle**. Our work includes community-based disaster risk reduction, emergency preparedness and contingency planning, early warning and early action, evacuation and shelter preparedness, first aid and emergency awareness, livelihood recovery, climate-resilient livelihoods and capacity building of community volunteers and local institutions. By combining humanitarian assistance with community participation, local knowledge and long-term development approaches, we aim to help communities **prepare for emergencies, respond effectively, recover with dignity and build greater resilience to future disasters and climate-related risks**.',
         ],
@@ -146,13 +151,13 @@ export const workPages = [
         ],
       },
       {
-        title: 'Community-led climate action (ABCD)',
+        title: 'ABCD Community-Led Action',
         body: [
           'A key strength of Equip Foundation is its emphasis on **community-led climate action through the Asset-Based Community Development (ABCD) approach**. Rather than viewing communities primarily through their needs and vulnerabilities, ABCD starts by identifying and mobilising the **existing assets, skills, knowledge, relationships, institutions, natural resources and local leadership** within the community. Local knowledge, community participation, available land and water resources, traditional practices, local plant species and the collective efforts of farmers, women, youth and community groups are recognised as valuable assets for environmental action. Equip Foundation facilitates communities to bring these assets together to establish nurseries, undertake plantations, restore ecosystems and develop locally appropriate responses to climate challenges.',
         ],
       },
       {
-        title: 'From passive recipients to active owners',
+        title: 'Passive Recipients → Active Owners',
         body: [
           'Through this approach, Equip Foundation seeks to move communities from being **passive recipients of environmental programmes to active owners and leaders of climate action**. Community groups, farmers, women, youth, schools and local institutions are encouraged to participate in planning, nursery development, seed-ball preparation, tree and palm planting, maintenance and monitoring. By combining community assets and traditional knowledge with appropriate technical support and partnerships, we aim to build **greener, self-reliant and climate-resilient communities**, while strengthening biodiversity, protecting natural resources, improving water and soil security, restoring local ecosystems and creating **sustainable and climate-resilient livelihoods for present and future generations**.',
         ],
@@ -170,19 +175,18 @@ export const workPages = [
         ],
       },
       {
-        title: 'Legal empowerment & paralegals',
+        title: 'Legal Empowerment & Paralegals',
         body: [
           'A key component of our work is **legal empowerment and access to justice**. Equip Foundation promotes legal education and rights awareness among communities, particularly women and children, covering relevant laws, entitlements, protection mechanisms and available avenues for justice. We support the development of **community-based paralegal systems** by identifying and building the capacities of community members who can provide basic legal information, assist with documentation, facilitate referrals and connect people with appropriate legal-aid and government institutions. Where required, we facilitate linkages with qualified legal professionals and relevant institutions for appropriate legal support, enabling communities to increasingly **understand, claim and protect their own rights**.',
         ],
       },
       {
-        title: 'Women and children',
+        title: 'Women and Children',
         body: [
           '**Women and children receive particular attention in our empowerment initiatives.** Women are supported to understand their rights, strengthen their voice and participation, access government schemes and services, and improve their **financial independence and economic decision-making** through financial literacy, savings, livelihood opportunities and enterprise development. For children, we promote **child rights education, awareness of protection mechanisms, safe participation, life skills and knowledge of their rights**, enabling children to express their views, seek help and participate meaningfully in matters concerning them. Parents, teachers and community members are also engaged to create supportive and protective environments in which children can grow, learn and exercise their rights.',
         ],
       },
       {
-        title: 'Active agents of their own development',
         body: [
           'Through **awareness, capacity building, leadership development, legal literacy, financial literacy and community mobilisation**, Equip Foundation seeks to strengthen the ability of individuals and communities to become active agents of their own development. We encourage women, children and vulnerable groups to identify and build upon their own strengths, assets and opportunities, develop confidence and leadership, access available resources and collectively address barriers to equality and justice. In keeping with our philosophy of **“Equip them to Equip Themselves,”** we aim to nurture **self-reliant, informed, confident and empowered individuals and communities** who can sustain positive change and create better opportunities for themselves, their families and future generations.',
         ],
@@ -192,6 +196,17 @@ export const workPages = [
   {
     slug: 'research',
     title: 'Research',
+    // The services in the client's bold list ("Our research services include ...").
+    chips: [
+      'Baseline studies',
+      'Feasibility studies',
+      'Needs assessments',
+      'Action research',
+      'Policy research',
+      'Monitoring and evaluation',
+      'Impact assessments',
+      'Community research',
+    ],
     sections: [
       {
         title: 'Overview',
@@ -200,13 +215,13 @@ export const workPages = [
         ],
       },
       {
-        title: 'Research services',
+        title: 'Services',
         body: [
           'Our research services include **baseline studies, feasibility studies, needs assessments, action research, policy research, monitoring and evaluation, impact assessments and community research**. Baseline studies help establish the existing socio-economic and development conditions against which progress can be measured, while feasibility studies assess the viability, risks, resources and potential impact of proposed interventions. Through monitoring and evaluation and impact assessment, we examine programme relevance, effectiveness, efficiency, outcomes and sustainability, generating evidence to strengthen future interventions. Our action research approach enables communities and practitioners to participate in identifying problems, testing solutions, learning from experience and applying findings to improve practice.',
         ],
       },
       {
-        title: 'Child, gender, livelihood and climate research',
+        title: 'Research Areas',
         body: [
           "Equip Foundation gives particular attention to research related to **children, women and socially excluded and vulnerable groups**. Research on child rights examines children's access to education, protection, participation, health and development, as well as risks such as child labour, child marriage, abuse and exploitation. Gender and inclusion research explores barriers faced by women and marginalised groups and opportunities for greater participation and empowerment. Livelihood research examines household economies, employment, skills, enterprise opportunities, natural-resource-based livelihoods and climate-related livelihood risks, while climate and disaster-resilience research examines community vulnerabilities, capacities, risks, preparedness, response, recovery and resilience.",
         ],
@@ -230,19 +245,19 @@ export const workPages = [
         ],
       },
       {
-        title: 'Community leadership and development',
+        title: 'Community Leadership',
         body: [
           "We provide **community leadership and development training** for grassroots leaders, community volunteers, women's groups, youth and local institutions. These programmes strengthen leadership, communication, participatory decision-making, community mobilisation, problem-solving and community-based planning. We also support **livelihood and vocational skills, entrepreneurship and enterprise development, employability, financial literacy, digital skills and workplace competencies**, enabling individuals—particularly women and youth—to improve their economic opportunities and financial independence.",
         ],
       },
       {
-        title: 'Rights, protection, inclusion and resilience',
+        title: 'Rights & Protection',
         body: [
           "Equip Foundation places strong emphasis on **rights, protection, inclusion and resilience**. Training programmes cover **child rights and child protection, women's rights and empowerment, gender equality, social inclusion, human rights and legal awareness**, as well as government schemes, rights and entitlements. We also provide **disaster preparedness and risk-reduction, emergency response, climate-change adaptation, environmental awareness, sustainable agriculture and natural-resource management training**, helping communities and local institutions strengthen their preparedness and resilience to disasters and climate-related risks.",
         ],
       },
       {
-        title: 'Civil society organisation capacity',
+        title: 'CSO Capacity',
         body: [
           'We also strengthen the capacities of **civil society organisations, development practitioners and community-based institutions** through organisational development, institutional strengthening, project planning and management, monitoring, evaluation and learning (MEL), fundraising, proposal development and resource mobilisation. **Training of Trainers (ToT), exposure visits, peer learning and knowledge-sharing programmes** are used to create a multiplier effect and strengthen local training capacity. Through **“Equip them to Equip Themselves,”** our ultimate objective is to build capable individuals, confident community leaders and stronger institutions that can sustain development initiatives, mobilise local resources and lead positive change within their communities.',
         ],
