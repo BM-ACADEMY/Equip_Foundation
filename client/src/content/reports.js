@@ -2,6 +2,8 @@
 // To publish a report: drop the PDF into public/reports/ using the expected
 // file name below, then set `file` to that path (e.g. '/reports/2011-12.pdf').
 // While `file` is null the page shows "Coming soon" instead of a broken link.
+// If `file` is set but the PDF is not actually there (typo, not uploaded yet)
+// the page notices and shows "Coming soon" too. No page code changes needed.
 
 const reportFile = (year) => `/reports/annual-report-${year}.pdf`
 
@@ -32,3 +34,10 @@ export const reports = years
     file: null,
   }))
   .reverse()
+
+// Short labels used by the Annual Reports page.
+export const reportLabels = {
+  download: 'Download',
+  reportName: 'Annual Report',
+  comingSoon: 'Coming soon',
+}

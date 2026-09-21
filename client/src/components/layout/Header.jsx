@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { donateLink } from '../../content/navConfig'
+import { donateLink, homePath } from '../../content/navConfig'
 import { siteConfig } from '../../content/siteConfig'
 import { nav } from '../../content/ui'
 import { Button, Container } from '../ui'
@@ -16,12 +16,17 @@ const MOBILE_MENU_ID = 'mobile-menu'
 // the whole page scrolls.
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const menuButtonRef = useRef(null)
   const { logo, headerImage } = siteConfig.assets
   const closeMobile = () => setMobileOpen(false)
 
   useEffect(() => {
     if (!mobileOpen) return undefined
-    const onKeyDown = (event) => event.key === 'Escape' && setMobileOpen(false)
+    const onKeyDown = (event) => {
+      if (event.key !== 'Escape') return
+      setMobileOpen(false)
+      menuButtonRef.current?.focus()
+    }
     document.addEventListener('keydown', onKeyDown)
     return () => document.removeEventListener('keydown', onKeyDown)
   }, [mobileOpen])
@@ -39,7 +44,7 @@ export default function Header() {
           blends in. The banner height equals the logo height. */}
       <div className="relative z-40 bg-linear-to-b from-banner-top to-banner-bottom">
         <Container className="relative flex h-20 items-center md:h-28">
-          <Link to="/" className="h-full">
+          <Link to={homePath} className="h-full focus-visible:outline-white">
             <img
               src={logo.src}
               width={logo.width}
@@ -62,6 +67,7 @@ export default function Header() {
         <Container className="relative">
           <div className="flex h-12 items-center gap-3 lg:pr-36">
             <button
+              ref={menuButtonRef}
               type="button"
               className="-ml-2 flex items-center gap-2 rounded-button px-2 py-2 font-semibold hover:bg-accent-300 lg:hidden"
               aria-expanded={mobileOpen}

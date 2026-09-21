@@ -2,6 +2,8 @@
 
 export const contact = {
   title: 'Contact Us',
+  // Field labels used in the client document under "Contact Details".
+  labels: { email: 'Email', phone: 'Phone', pin: 'Pin' },
   // The four Contact Us menu items are anchored sections of one page.
   sections: {
     office: {

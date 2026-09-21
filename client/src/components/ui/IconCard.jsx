@@ -26,7 +26,11 @@ export default function IconCard({
       {icon && (
         <span
           aria-hidden="true"
-          className="flex size-12 shrink-0 items-center justify-center rounded-button bg-brand-100 text-brand-700 [&>svg]:size-6"
+          className={cx(
+            'flex size-12 shrink-0 items-center justify-center rounded-button bg-brand-100 text-brand-700 transition-colors duration-200 [&>svg]:size-6',
+            to &&
+              'group-hover:bg-brand-700 group-hover:text-white group-focus-visible:bg-brand-700 group-focus-visible:text-white',
+          )}
         >
           {icon}
         </span>

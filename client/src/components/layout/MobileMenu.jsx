@@ -23,15 +23,15 @@ function Chevron({ open }) {
 
 // Hamburger panel (below lg): each dropdown becomes an accordion section.
 export default function MobileMenu({ id, open, onClose }) {
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
   const [openLabel, setOpenLabel] = useState(null)
 
   return (
     <nav
       id={id}
       aria-label={nav.mobileLabel}
-      hidden={!open}
-      className="absolute inset-x-0 top-full max-h-[calc(100dvh-3rem)] overflow-y-auto border-t border-accent-700 bg-surface shadow-card-hover lg:hidden"
+      data-open={open}
+      className="fade-toggle absolute inset-x-0 top-full max-h-[calc(100dvh-3rem)] overflow-y-auto border-t border-accent-700 bg-surface shadow-card-hover lg:hidden"
     >
       <ul className="divide-y divide-line">
         {navConfig.map((item) => {
@@ -82,23 +82,36 @@ export default function MobileMenu({ id, open, onClose }) {
                 )}
               </div>
               {hasChildren && (
-                <ul
+                <div
                   id={panelId}
-                  hidden={!expanded}
-                  className="bg-surface-muted py-1"
+                  className={cx(
+                    'grid bg-surface-muted transition-[grid-template-rows] duration-200',
+                    expanded ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]',
+                  )}
                 >
-                  {item.children.map((child) => (
-                    <li key={child.path}>
-                      <Link
-                        to={child.path}
-                        onClick={onClose}
-                        className="block py-3 pr-4 pl-8 hover:bg-accent-100"
-                      >
-                        {child.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+                  <ul className="overflow-hidden" inert={!expanded}>
+                    {item.children.map((child) => {
+                      const current = child.path.includes('#')
+                        ? pathname + hash === child.path
+                        : pathname === child.path
+                      return (
+                        <li key={child.path}>
+                          <Link
+                            to={child.path}
+                            onClick={onClose}
+                            aria-current={current ? 'page' : undefined}
+                            className={cx(
+                              'block py-3 pr-4 pl-8 hover:bg-accent-100',
+                              current && 'font-semibold text-brand-800',
+                            )}
+                          >
+                            {child.label}
+                          </Link>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                </div>
               )}
             </li>
           )
