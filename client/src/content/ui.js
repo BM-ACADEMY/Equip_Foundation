@@ -29,7 +29,11 @@ export const footer = {
     ['FCRA', 'fcra'],
     ['PAN', 'pan'],
   ],
-  rights: 'All rights reserved.',
+  // Footer line: "© <year> BMTechx.in. All Rights Reserved." (BMTechx.in is a link)
+  copyrightHolder: 'BMTechx.in',
+  creditUrl: 'https://bmtechx.in',
+  newTab: '(opens in a new tab)',
+  rights: 'All Rights Reserved.',
 }
 
 // Shown on pages whose content task is not built yet.

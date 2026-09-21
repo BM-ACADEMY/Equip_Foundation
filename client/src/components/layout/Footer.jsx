@@ -174,7 +174,17 @@ export default function Footer() {
       <div className="bg-brand-950">
         <Container className="flex flex-col gap-2 py-5 text-small text-brand-200 md:flex-row md:justify-between">
           <p>
-            © {new Date().getFullYear()} {name}. {footer.rights}
+            © {new Date().getFullYear()}{' '}
+            <a
+              href={footer.creditUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-accent-300 underline-offset-4 hover:underline focus-visible:outline-white"
+            >
+              {footer.copyrightHolder}
+              <span className="sr-only"> {footer.newTab}</span>
+            </a>
+            . {footer.rights}
           </p>
           <p>{registrationLine}</p>
         </Container>
