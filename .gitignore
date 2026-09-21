@@ -1,0 +1,26 @@
+# Client documents (content doc, dev plan, proposal) are not part of the codebase
+documents/
+
+# Dependencies
+node_modules
+
+# Build output
+dist
+dist-ssr
+
+# Environment files (keep .env.example)
+.env
+.env.*
+!.env.example
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea
