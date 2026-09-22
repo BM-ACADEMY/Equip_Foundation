@@ -49,6 +49,9 @@ export const involvePages = [
       // Client still needs to supply the account number.
       { key: 'accountNumber', label: 'Account Number' },
     ],
+    // Shown instead of a value + Copy button for any bank field the client
+    // has not supplied yet (checked with siteConfig.isPlaceholder).
+    bankPendingLabel: 'To be added',
     cta: { label: 'Send us your payment reference', type: 'donate' },
   },
   {

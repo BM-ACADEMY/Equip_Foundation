@@ -3,13 +3,14 @@
 export const contact = {
   title: 'Contact Us',
   // Field labels used in the client document under "Contact Details".
-  labels: { email: 'Email', phone: 'Phone', pin: 'Pin' },
+  labels: { email: 'Email', phone: 'Phone', pin: 'Pin', address: 'Address' },
   // The four Contact Us menu items are anchored sections of one page.
   sections: {
     office: {
       id: 'office',
       title: 'Our Office',
       text: 'Our office serves as a point of contact for community members, partners, volunteers, institutions and other stakeholders. Visitors are welcome to connect with our team to learn more about our programmes, initiatives and opportunities for collaboration.',
+      mapTitle: 'Equip Foundation office location',
     },
     details: {
       id: 'details',
@@ -40,6 +41,30 @@ export const contact = {
       engagementType: 'How would you like to engage with Equip Foundation?',
     },
     submitLabel: 'Send Enquiry',
+    submittingLabel: 'Sending…',
+    // Must match the backend's hidden spam-guard field name (Task 7.1,
+    // server/index.js HONEYPOT_FIELD). Never shown to real visitors.
+    honeypotField: 'website',
+    // Must stay in sync with the backend's MAX_MESSAGE_LENGTH (server/index.js).
+    messageMaxLength: 5000,
+    messages: {
+      requiredName: 'Please enter your name.',
+      requiredEmail: 'Please enter your email address.',
+      invalidEmail: 'Please enter a valid email address.',
+      requiredMessage: 'Please enter a message.',
+      messageTooLong: 'Please keep your message under 5000 characters.',
+      invalidPhone: 'Please enter a valid 10-digit Indian mobile number.',
+      success: 'Thank you — our team will respond as soon as possible.',
+      rateLimited:
+        "You've sent several enquiries recently. Please wait a few minutes and try again.",
+      network:
+        "We couldn't reach the server. Please check your connection and try again.",
+      // Used only if the server responds without its own error message.
+      genericWithEmail: (email) =>
+        `We couldn't send your enquiry right now. Please email us directly at ${email}.`,
+      genericNoEmail:
+        "We couldn't send your enquiry right now. Please try again shortly.",
+    },
   },
 }
 

@@ -6,6 +6,7 @@ import {
   ProgrammeCard,
   RichText,
   Section,
+  WaysToGetInvolved,
 } from '../../components/ui'
 import { programCta, programLabels } from '../../content/program'
 
@@ -43,6 +44,11 @@ function TextBlock({ title, paragraphs, variant, children }) {
 //   related  [{ title, to }] link cards at the bottom (see utils/relatedPages)
 //   labels   { intro, approach, focus, related } headings; leave one out to
 //            show that block without a heading
+//   waysToGetInvolved  { title, items } cross-link band at the very bottom
+//            (see content/program.js), or omit — used by Our Work pages only,
+//            not by the Get Involved pages that also render through this
+//            template (linking a Get Involved page back to its own siblings
+//            would be circular).
 //
 // All text comes from the data. **bold** phrases in the copy are kept.
 export default function ProgramPage({
@@ -50,6 +56,7 @@ export default function ProgramPage({
   cta = programCta,
   related = [],
   labels = programLabels,
+  waysToGetInvolved,
 }) {
   const { title, summary, intro, approach, chips, cards, sections } = page
 
@@ -150,6 +157,13 @@ export default function ProgramPage({
             ))}
           </ul>
         </Section>
+      )}
+
+      {hasItems(waysToGetInvolved?.items) && (
+        <WaysToGetInvolved
+          title={waysToGetInvolved.title}
+          items={waysToGetInvolved.items}
+        />
       )}
     </>
   )
