@@ -45,20 +45,34 @@ export default function Header() {
       <div className="relative z-40 bg-linear-to-b from-banner-top to-banner-bottom">
         <Container className="relative flex h-20 items-center md:h-28">
           <Link to={homePath} className="h-full focus-visible:outline-white">
-            <img
-              src={logo.src}
-              width={logo.width}
-              height={logo.height}
-              alt={siteConfig.name}
-              className="h-full w-auto"
-            />
+            <picture>
+              <source srcSet={logo.webp} type="image/webp" />
+              <img
+                src={logo.src}
+                width={logo.width}
+                height={logo.height}
+                alt={siteConfig.name}
+                className="h-full w-auto"
+                // Above the fold on every page and usually the LCP element,
+                // so it loads eagerly and with priority (Task 8.2) rather
+                // than the browser's default/lazy heuristics.
+                loading="eager"
+                fetchPriority="high"
+              />
+            </picture>
           </Link>
-          <img
-            src={headerImage}
-            alt=""
-            aria-hidden="true"
-            className="absolute top-2 right-8 hidden h-32 w-28 rounded-[50%] border-2 border-white object-cover shadow-card-hover grayscale lg:block"
-          />
+          <picture>
+            <source srcSet={headerImage.webp} type="image/webp" />
+            <img
+              src={headerImage.src}
+              width={headerImage.width}
+              height={headerImage.height}
+              alt=""
+              aria-hidden="true"
+              className="absolute top-2 right-8 hidden h-32 w-28 rounded-[50%] border-2 border-white object-cover shadow-card-hover grayscale lg:block"
+              loading="eager"
+            />
+          </picture>
         </Container>
       </div>
 

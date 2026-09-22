@@ -29,6 +29,7 @@ function Avatar({ name, photo }) {
           alt={name}
           width={112}
           height={112}
+          loading="lazy"
           onLoad={() => setStatus('loaded')}
           onError={() => setStatus('failed')}
           className={cx(

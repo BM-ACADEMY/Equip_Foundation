@@ -1,0 +1,23 @@
+# Cache headers for the production static build (Task 8.2). Netlify-style
+# _headers syntax — Vite copies public/ into dist/ verbatim, so this ships
+# as dist/_headers. Most static hosts (Netlify, and Cloudflare Pages/others
+# via a compatible syntax) read this file directly; for a host that doesn't,
+# translate these same rules into its own config (e.g. Nginx `Cache-Control`
+# response headers, an Apache `.htaccess`, or a Vercel `vercel.json`).
+#
+# /assets/* (JS, CSS, fonts) are content-hashed by Vite — a changed file
+# always gets a new filename — so they are safe to cache aggressively and
+# immutably for a year. HTML, the sitemap and robots.txt keep the default
+# short/no-cache below so a new deploy is picked up immediately.
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/*
+  Cache-Control: public, max-age=0, must-revalidate

@@ -87,8 +87,12 @@ export const home = {
 
   // Get Involved band. Destinations come from the menu configuration.
   // Reusable: any page can import this and pass it to <CTABand />.
+  // Title is Task 6.3's "Ways to get involved" heading. Kept as a literal
+  // here (not imported from content/program.js) because that module already
+  // imports this one for programCta.actions — importing back would be a
+  // circular import. Keep the two strings in sync by hand.
   involveBand: {
-    title: involveOverview.title,
+    title: 'Ways to get involved',
     actions: [
       { label: donateLink.label, to: donateLink.path, variant: 'donate' },
       {

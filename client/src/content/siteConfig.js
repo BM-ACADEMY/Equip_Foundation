@@ -16,11 +16,23 @@ export const siteConfig = {
   ],
   vision: 'People and communities equipped to shape their own future.',
 
-  // Client-supplied brand images (public/images/logo/).
+  // Client-supplied brand images (public/images/logo/). Each has a WebP
+  // version (Task 8.2) that the <picture> element in Header.jsx prefers,
+  // falling back to the original for browsers without WebP support.
   // The header artwork is decorative, so it has no alt text.
   assets: {
-    logo: { src: '/images/logo/Logo.png', width: 400, height: 113 },
-    headerImage: '/images/logo/selfmadesilai.jpeg',
+    logo: {
+      src: '/images/logo/Logo.png',
+      webp: '/images/logo/Logo.webp',
+      width: 400,
+      height: 113,
+    },
+    headerImage: {
+      src: '/images/logo/selfmadesilai.jpeg',
+      webp: '/images/logo/selfmadesilai.webp',
+      width: 400,
+      height: 350,
+    },
   },
   // Base URL is needed for canonical links / sitemap. Confirm with the client.
   siteUrl: '[Website Domain]',
@@ -85,3 +97,13 @@ export const siteConfig = {
     covidResponse: true,
   },
 }
+
+// The production origin used for canonical links, Open Graph og:url, and the
+// sitemap (Task 8.1) — the one place these read from, so there are not four
+// different hardcoded domains. `siteConfig.siteUrl` above is still a
+// placeholder pending the client's real domain, so until it is confirmed
+// this falls back to a reserved example domain (RFC 2606 `.example`) rather
+// than guessing a real-looking one.
+export const siteOrigin = isPlaceholder(siteConfig.siteUrl)
+  ? 'https://www.equipfoundation.example'
+  : siteConfig.siteUrl.replace(/\/+$/, '')
