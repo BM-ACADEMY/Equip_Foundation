@@ -4,6 +4,7 @@ const variants = {
   default: 'border-line bg-surface',
   muted: 'border-transparent bg-surface-muted',
   highlight: 'border-brand-200 bg-brand-50 border-l-4 border-l-brand-600',
+  accent: 'border-accent-200 bg-accent-50 border-l-4 border-l-accent-600',
 }
 
 const paddings = { none: '', sm: 'p-4', md: 'p-6', lg: 'p-8' }
