@@ -49,11 +49,13 @@ export const contact = {
     messageMaxLength: 5000,
     messages: {
       requiredName: 'Please enter your name.',
+      requiredOrganisation: 'Please enter your organisation / institution.',
       requiredEmail: 'Please enter your email address.',
       invalidEmail: 'Please enter a valid email address.',
-      requiredMessage: 'Please enter a message.',
-      messageTooLong: 'Please keep your message under 5000 characters.',
+      requiredPhone: 'Please enter your phone number.',
       invalidPhone: 'Please enter a valid 10-digit Indian mobile number.',
+      requiredSubject: 'Please enter a subject.',
+      messageTooLong: 'Please keep your message under 5000 characters.',
       success: 'Thank you — our team will respond as soon as possible.',
       rateLimited:
         "You've sent several enquiries recently. Please wait a few minutes and try again.",

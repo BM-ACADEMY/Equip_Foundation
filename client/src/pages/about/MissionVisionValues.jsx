@@ -32,7 +32,7 @@ export default function MissionVisionValues() {
               key={valueTitle}
               className="w-full sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]"
             >
-              <Card hoverable className="h-full">
+              <Card variant="accent" hoverable className="h-full">
                 <span
                   aria-hidden="true"
                   className="flex size-9 items-center justify-center rounded-full bg-brand-700 font-semibold text-white"

@@ -47,6 +47,11 @@ const mapQuery = encodeURIComponent(
 )
 const mapSrc = `https://www.google.com/maps?q=${mapQuery}&output=embed`
 
+// Backend base URL. Falls back to the relative '/api' path (forwarded to the
+// backend by the Vite dev proxy, see vite.config.js) when VITE_SERVER_URL is
+// not set, so this keeps working with no .env present at all.
+const API_BASE = import.meta.env.VITE_SERVER_URL
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const PHONE_RE = /^[6-9]\d{9}$/
 const normalizePhone = (value) => value.replace(/[\s\-.()]/g, '')
@@ -69,17 +74,17 @@ function validate(values) {
   const { messages, messageMaxLength } = contact.form
 
   if (!values.name.trim()) errors.name = messages.requiredName
+  if (!values.organisation.trim())
+    errors.organisation = messages.requiredOrganisation
   if (!values.email.trim()) errors.email = messages.requiredEmail
   else if (!EMAIL_RE.test(values.email.trim()))
     errors.email = messages.invalidEmail
-  if (!values.message.trim()) errors.message = messages.requiredMessage
-  else if (values.message.trim().length > messageMaxLength)
-    errors.message = messages.messageTooLong
-  if (
-    values.phone.trim() &&
-    !PHONE_RE.test(normalizePhone(values.phone.trim()))
-  )
+  if (!values.phone.trim()) errors.phone = messages.requiredPhone
+  else if (!PHONE_RE.test(normalizePhone(values.phone.trim())))
     errors.phone = messages.invalidPhone
+  if (!values.subject.trim()) errors.subject = messages.requiredSubject
+  if (values.message.trim().length > messageMaxLength)
+    errors.message = messages.messageTooLong
 
   return errors
 }
@@ -128,7 +133,7 @@ export default function Contact() {
     setErrorMessage('')
 
     try {
-      const res = await fetch('/api/enquiry', {
+      const res = await fetch(`${API_BASE}/equip/send-email`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -344,12 +349,23 @@ export default function Contact() {
                 />
               </Field>
 
-              <Field id="organisation" label={fields.organisation}>
+              <Field
+                id="organisation"
+                label={fields.organisation}
+                required
+                error={errors.organisation}
+              >
                 <input
                   id="organisation"
                   type="text"
                   autoComplete="organization"
-                  className={fieldClass(false)}
+                  required
+                  aria-required="true"
+                  aria-invalid={Boolean(errors.organisation)}
+                  aria-describedby={
+                    errors.organisation ? 'organisation-error' : undefined
+                  }
+                  className={fieldClass(Boolean(errors.organisation))}
                   value={values.organisation}
                   onChange={setField('organisation')}
                 />
@@ -378,6 +394,7 @@ export default function Contact() {
               <Field
                 id="phone"
                 label={fields.phone}
+                required
                 error={errors.phone}
                 hint="10-digit Indian mobile number"
               >
@@ -385,6 +402,8 @@ export default function Contact() {
                   id="phone"
                   type="tel"
                   autoComplete="tel"
+                  required
+                  aria-required="true"
                   aria-invalid={Boolean(errors.phone)}
                   aria-describedby={errors.phone ? 'phone-error' : undefined}
                   className={fieldClass(Boolean(errors.phone))}
@@ -396,12 +415,20 @@ export default function Contact() {
               <Field
                 id="subject"
                 label={fields.subject}
+                required
+                error={errors.subject}
                 className="sm:col-span-2"
               >
                 <input
                   id="subject"
                   type="text"
-                  className={fieldClass(false)}
+                  required
+                  aria-required="true"
+                  aria-invalid={Boolean(errors.subject)}
+                  aria-describedby={
+                    errors.subject ? 'subject-error' : undefined
+                  }
+                  className={fieldClass(Boolean(errors.subject))}
                   value={values.subject}
                   onChange={setField('subject')}
                 />
@@ -410,10 +437,13 @@ export default function Contact() {
               <Field
                 id="engagementType"
                 label={fields.engagementType}
+                required
                 className="sm:col-span-2"
               >
                 <select
                   id="engagementType"
+                  required
+                  aria-required="true"
                   className={fieldClass(false)}
                   value={values.engagementType}
                   onChange={setField('engagementType')}
@@ -429,15 +459,12 @@ export default function Contact() {
               <Field
                 id="message"
                 label={fields.message}
-                required
                 error={errors.message}
                 className="sm:col-span-2"
               >
                 <textarea
                   id="message"
                   rows={5}
-                  required
-                  aria-required="true"
                   aria-invalid={Boolean(errors.message)}
                   aria-describedby={
                     errors.message ? 'message-error' : undefined
