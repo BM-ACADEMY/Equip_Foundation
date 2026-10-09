@@ -64,9 +64,24 @@ export default function ProgramPage({
     <>
       <PageHero title={title} summary={summary} />
 
+      {hasItems(page.images) && (
+        <Section>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {page.images.map((imgSrc, index) => (
+              <img
+                key={index}
+                src={imgSrc}
+                className="rounded-lg object-cover w-full h-40 md:h-48 shadow-md"
+                alt={`${title} work`}
+              />
+            ))}
+          </div>
+        </Section>
+      )}
+
       {hasItems(intro) && (
         <Section>
-          <TextBlock title={labels.intro} paragraphs={intro} />
+          <TextBlock paragraphs={intro} />
         </Section>
       )}
 

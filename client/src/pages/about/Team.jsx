@@ -35,6 +35,12 @@ export default function Team() {
           <TeamGrid people={team.advisors} />
         </Section>
       )}
+
+      {team.ambassadors?.length > 0 && (
+        <Section title={team.ambassadorsTitle || 'Ambassadors'}>
+          <TeamGrid people={team.ambassadors} />
+        </Section>
+      )}
     </>
   )
 }

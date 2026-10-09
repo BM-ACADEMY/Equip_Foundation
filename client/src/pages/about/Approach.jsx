@@ -25,7 +25,6 @@ function ApproachBlock({ title, text }) {
 // sustainable and inclusive development) with the pull quote as a key
 // statement between them. All copy comes from content/about.js.
 export default function Approach() {
-  const lastBlock = approach.blocks.at(-1)
 
   return (
     <>
@@ -33,7 +32,7 @@ export default function Approach() {
 
       <Section>
         <div className="space-y-6">
-          {approach.blocks.slice(0, -1).map((block) => (
+          {approach.blocks.map((block) => (
             <ApproachBlock key={block.title} {...block} />
           ))}
         </div>
@@ -41,10 +40,6 @@ export default function Approach() {
 
       <Section tone="muted" size="narrow">
         <PullQuote text={approach.quote} tone="brand" />
-      </Section>
-
-      <Section>
-        <ApproachBlock {...lastBlock} />
       </Section>
     </>
   )

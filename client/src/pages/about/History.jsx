@@ -3,7 +3,6 @@ import {
   PageHero,
   RichText,
   Section,
-  Timeline,
 } from '../../components/ui'
 import { history } from '../../content/about'
 
@@ -13,11 +12,6 @@ export default function History() {
   return (
     <>
       <PageHero title={history.title} />
-
-      <Section tone="muted">
-        <h2 className="sr-only">{history.timelineLabel}</h2>
-        <Timeline items={history.timeline} layout="horizontal" />
-      </Section>
 
       <Section>
         <div className="grid gap-6 lg:grid-cols-2">

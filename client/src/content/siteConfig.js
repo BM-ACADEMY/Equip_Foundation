@@ -55,9 +55,9 @@ export const siteConfig = {
   },
 
   socials: [
-    { id: 'facebook', label: 'Facebook', url: '[Facebook Page]' },
+    { id: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/profile.php?id=61595037692486' },
     { id: 'instagram', label: 'Instagram', url: '[Instagram Profile]' },
-    { id: 'linkedin', label: 'LinkedIn', url: '[LinkedIn Page]' },
+    { id: 'linkedin', label: 'LinkedIn', url: 'https://www.linkedin.com/in/equip-foundation-5aa7a7440' },
     { id: 'youtube', label: 'YouTube', url: '[YouTube Channel]' },
   ],
 

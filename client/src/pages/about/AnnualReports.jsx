@@ -32,8 +32,8 @@ export default function AnnualReports() {
     <>
       <PageHero title={aboutPages.annualReports.title} />
 
-      <Section size="narrow">
-        <ul className="space-y-3">
+      <Section>
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {reports.map(({ id, label, file }) => (
             <li key={id}>
               <Card

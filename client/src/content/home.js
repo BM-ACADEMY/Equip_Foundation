@@ -32,7 +32,7 @@ const covidLabel = 'COVID-19 response'
 // The COVID-19 response text from the Humanitarian Aid page (first sentence).
 const covidSection = workPages
   .find((page) => page.slug === 'humanitarian-aid')
-  ?.sections.find((section) => section.title === covidLabel)
+  ?.sections?.find((section) => section.title === covidLabel)
 
 const { impact } = siteConfig
 const volunteerPage = involvePages.find((page) => page.slug === 'volunteer')

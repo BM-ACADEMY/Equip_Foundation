@@ -24,14 +24,7 @@ export default function Home() {
     <>
       {/* Above the fold, so no scroll-reveal. Text only until the client
           supplies an approved hero image. */}
-      <PageHero title={hero.headline} summary={hero.tagline}>
-        <Button to={donateLink.path} variant="donate" size="lg" onDark>
-          {donateLink.label}
-        </Button>
-        <Button to={hero.secondaryCta.path} variant="outline" size="lg" onDark>
-          {hero.secondaryCta.label}
-        </Button>
-      </PageHero>
+      <PageHero title={hero.headline} summary={hero.tagline} />
 
       <Section>
         <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-start">
@@ -46,51 +39,18 @@ export default function Home() {
         </div>
       </Section>
 
+      <Section>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {['1.jpg', '2.jpg', '3.JPG', '4.JPG', '5.png', '6.JPG', '7.jpg', '8.JPG'].map(img => (
+            <img key={img} src={`/images/Home Page/${img}`} className="rounded-lg object-cover w-full h-48 md:h-64 shadow-md" alt="Equip Foundation work" />
+          ))}
+        </div>
+      </Section>
+
       <Section tone="muted" title={home.focusAreasTitle}>
         <ProgrammeGrid items={home.focusAreas} />
       </Section>
 
-      <Section title={impact.title}>
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
-          <dl className="grid grid-cols-2 gap-4 lg:grid-cols-1 lg:gap-6">
-            {impact.stats.map(({ label, value }) => (
-              <Card key={label}>
-                <dt className="text-small font-semibold tracking-wide text-ink-muted uppercase">
-                  {label}
-                </dt>
-                <dd className="mt-2 font-heading text-h1 font-semibold text-brand-700 md:text-display">
-                  {value}
-                </dd>
-              </Card>
-            ))}
-          </dl>
-          <Card padding="lg">
-            <h3 className="text-h3 font-semibold">{impact.disastersTitle}</h3>
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {impact.disasters.map(({ year, name }) => (
-                <Badge
-                  as="li"
-                  key={`${year} ${name}`}
-                  variant="neutral"
-                  className="gap-1.5"
-                >
-                  <span className="font-semibold">{year}</span>
-                  {name}
-                </Badge>
-              ))}
-            </ul>
-            {impact.covid && (
-              <div className="mt-6 border-t border-line pt-6">
-                <Badge variant="accent">{impact.covid.label}</Badge>
-                <RichText
-                  text={impact.covid.text}
-                  className="mt-3 text-ink-muted"
-                />
-              </div>
-            )}
-          </Card>
-        </div>
-      </Section>
 
       <Section tone="muted" title={home.valuesTitle}>
         <ol className="flex flex-wrap justify-center gap-4">

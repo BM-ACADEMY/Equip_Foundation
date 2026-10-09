@@ -43,7 +43,7 @@ const socialIcons = {
 
 const { address } = siteConfig
 const mapQuery = encodeURIComponent(
-  `${address.organisation}, ${address.line1} ${address.line2} ${address.pin}`,
+  `${address.line1} ${address.line2} ${address.pin}`,
 )
 const mapSrc = `https://www.google.com/maps?q=${mapQuery}&output=embed`
 
@@ -190,7 +190,7 @@ export default function Contact() {
         intro={contact.sections.office.text}
       >
         <div className="grid gap-8 lg:grid-cols-2">
-          <Card padding="lg">
+          <Card padding="lg" className="flex h-full flex-col items-center justify-center text-center">
             <address className="not-italic text-body text-ink">
               <p className="font-heading text-lead font-semibold">
                 {address.organisation}

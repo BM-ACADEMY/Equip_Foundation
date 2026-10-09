@@ -11,18 +11,18 @@ export default function MissionVisionValues() {
     <>
       <PageHero title={title} />
 
-      <Section title={vision.title}>
-        <p className="max-w-4xl border-l-4 border-brand-600 pl-6 font-heading text-h1 font-semibold text-brand-800 md:pl-8 md:text-display">
-          {vision.text}
-        </p>
-      </Section>
-
-      <Section tone="muted" title={mission.title}>
+      <Section title={mission.title}>
         <Card variant="highlight" padding="none" className="p-6 md:p-10">
           <p className="max-w-4xl font-heading text-h2 font-medium md:text-h1">
             {mission.text}
           </p>
         </Card>
+      </Section>
+
+      <Section tone="muted" title={vision.title}>
+        <p className="max-w-4xl border-l-4 border-brand-600 pl-6 font-heading text-h1 font-semibold text-brand-800 md:pl-8 md:text-display">
+          {vision.text}
+        </p>
       </Section>
 
       <Section title={valuesTitle}>
