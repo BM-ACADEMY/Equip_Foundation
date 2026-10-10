@@ -17,53 +17,61 @@ export default function PageHero({
   align = 'left',
   className,
   children,
+  rightContent,
 }) {
   const onDark = tone === 'brand'
 
   return (
     <header className={cx('py-14 md:py-20', tones[tone], className)}>
       <Container>
-        <div
-          className={cx(
-            'max-w-narrow',
-            align === 'center' && 'mx-auto text-center',
-          )}
-        >
-          {eyebrow && (
-            <p
-              className={cx(
-                'mb-3 text-small font-semibold tracking-wide uppercase',
-                onDark ? 'text-brand-200' : 'text-brand-700',
-              )}
-            >
-              {eyebrow}
-            </p>
-          )}
-          <h1
+        <div className={cx(rightContent && 'grid lg:grid-cols-2 gap-10 items-center')}>
+          <div
             className={cx(
-              'text-h1 font-semibold md:text-display',
-              onDark && 'text-white',
+              'max-w-narrow',
+              align === 'center' && 'mx-auto text-center',
             )}
           >
-            {title}
-          </h1>
-          {summary && (
-            <RichText
-              text={summary}
+            {eyebrow && (
+              <p
+                className={cx(
+                  'mb-3 text-small font-semibold tracking-wide uppercase',
+                  onDark ? 'text-brand-200' : 'text-brand-700',
+                )}
+              >
+                {eyebrow}
+              </p>
+            )}
+            <h1
               className={cx(
-                'mt-4 text-lead',
-                onDark ? 'text-brand-100' : 'text-ink-muted',
-              )}
-            />
-          )}
-          {children && (
-            <div
-              className={cx(
-                'mt-8 flex flex-wrap gap-3',
-                align === 'center' && 'justify-center',
+                'text-h1 font-semibold md:text-display',
+                onDark && 'text-white',
               )}
             >
-              {children}
+              {title}
+            </h1>
+            {summary && (
+              <RichText
+                text={summary}
+                className={cx(
+                  'mt-4 text-lead',
+                  onDark ? 'text-brand-100' : 'text-ink-muted',
+                )}
+              />
+            )}
+            {children && (
+              <div
+                className={cx(
+                  'mt-8 flex flex-wrap gap-3',
+                  align === 'center' && 'justify-center',
+                )}
+              >
+                {children}
+              </div>
+            )}
+          </div>
+          {rightContent && (
+            <div className="w-full min-w-0">
+              {rightContent}
             </div>
           )}
         </div>

@@ -8,6 +8,7 @@ import {
   PullQuote,
   RichText,
   Section,
+  AutoCarousel,
 } from '../components/ui'
 import { home } from '../content/home'
 import { donateLink } from '../content/navConfig'
@@ -24,32 +25,31 @@ export default function Home() {
     <>
       {/* Above the fold, so no scroll-reveal. Text only until the client
           supplies an approved hero image. */}
-      <PageHero title={hero.headline} summary={hero.tagline} />
+      <PageHero
+        title={hero.headline}
+        summary={hero.tagline}
+        rightContent={
+          <AutoCarousel images={['5.png', '6.JPG', '7.jpg', '8.JPG']} interval={3000} />
+        }
+      />
 
       <Section>
         <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-start">
-          <div className="space-y-8">
+          <div className="space-y-8 min-w-0">
             <RichText text={intro.text} className="text-lead text-ink-muted" />
-            <PullQuote text={siteConfig.motto} />
+            <AutoCarousel images={['1.jpg', '2.jpg', '3.JPG', '4.JPG']} interval={3000} />
           </div>
-          <Card variant="highlight" padding="lg">
-            <h2 className="text-h3 font-semibold">{mission.title}</h2>
-            <p className="mt-3 text-lead">{mission.text}</p>
-          </Card>
+          <div className="space-y-8">
+            <PullQuote text={siteConfig.motto} />
+            <Card variant="highlight" padding="lg">
+              <h2 className="text-h3 font-semibold">{mission.title}</h2>
+              <p className="mt-3 text-lead">{mission.text}</p>
+            </Card>
+          </div>
         </div>
       </Section>
 
-      <Section>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {['1.jpg', '2.jpg', '3.JPG', '4.JPG', '5.png', '6.JPG', '7.jpg', '8.JPG'].map(img => (
-            <img key={img} src={`/images/Home Page/${img}`} className="rounded-lg object-cover w-full h-48 md:h-64 shadow-md" alt="Equip Foundation work" />
-          ))}
-        </div>
-      </Section>
 
-      <Section tone="muted" title={home.focusAreasTitle}>
-        <ProgrammeGrid items={home.focusAreas} />
-      </Section>
 
 
       <Section tone="muted" title={home.valuesTitle}>
