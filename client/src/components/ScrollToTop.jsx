@@ -4,8 +4,10 @@ import { seo } from '../content/seo'
 import { siteConfig } from '../content/siteConfig'
 import { prefersReducedMotion } from '../utils/motion'
 
-// Route changes scroll to the top instantly. Links with an #anchor (the Contact
-// Us dropdown items) scroll smoothly (instantly if reduced motion is on). `key` changes on
+// Route changes scroll to the top smoothly (instantly if reduced motion is
+// on) — this is what runs when the header logo is clicked, since that's
+// just a normal navigation to Home. Links with an #anchor (the Contact Us
+// dropdown items) scroll smoothly to that anchor instead. `key` changes on
 // every navigation, so clicking the same anchor again scrolls again.
 export default function ScrollToTop() {
   const { pathname, hash, key } = useLocation()
@@ -19,7 +21,10 @@ export default function ScrollToTop() {
 
   useEffect(() => {
     if (!hash) {
-      window.scrollTo({ top: 0, behavior: 'instant' })
+      window.scrollTo({
+        top: 0,
+        behavior: prefersReducedMotion() ? 'instant' : 'smooth',
+      })
       return undefined
     }
     // The target may render a frame after the route change, so retry briefly.
