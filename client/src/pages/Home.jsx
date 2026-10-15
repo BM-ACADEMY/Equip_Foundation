@@ -1,25 +1,20 @@
 import {
-  Badge,
-  Button,
   Card,
   CTABand,
   PageHero,
-  ProgrammeGrid,
   PullQuote,
-  RichText,
   Section,
   AutoCarousel,
 } from '../components/ui'
 import { home } from '../content/home'
-import { donateLink } from '../content/navConfig'
 import { siteConfig } from '../content/siteConfig'
 
-// Home page. Task 3.1: hero, intro, motto and mission. Task 3.2: focus areas,
+// Home page. Task 3.1: hero, motto and mission. Task 3.2: focus areas,
 // impact, values and the Get Involved band.
 // All copy comes from content/home.js (built from about.js, work.js,
 // siteConfig.js and navConfig.js).
 export default function Home() {
-  const { hero, intro, mission, impact } = home
+  const { hero, mission } = home
 
   return (
     <>
@@ -29,14 +24,17 @@ export default function Home() {
         title={hero.headline}
         summary={hero.tagline}
         rightContent={
-          <AutoCarousel images={['5.png', '6.JPG', '7.jpg', '8.JPG']} interval={3000} />
+          <AutoCarousel
+            images={['5.png', '6.JPG', '7.jpg', '8.JPG']}
+            interval={3000}
+            tone="on-dark"
+          />
         }
       />
 
       <Section>
-        <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-start">
-          <div className="space-y-8 min-w-0">
-            <RichText text={intro.text} className="text-lead text-ink-muted" />
+        <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
+          <div className="min-w-0">
             <AutoCarousel images={['1.jpg', '2.jpg', '3.JPG', '4.JPG']} interval={3000} />
           </div>
           <div className="space-y-8">

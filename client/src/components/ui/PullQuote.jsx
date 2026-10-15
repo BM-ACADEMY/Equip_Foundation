@@ -8,7 +8,7 @@ const tones = {
 
 // Highlighted statement. `text` supports **bold**; `cite` is an optional
 // attribution line.
-export default function PullQuote({ text, cite, tone = 'default', className }) {
+export default function PullQuote({ text, cite, tone = 'default', showQuote = false, className }) {
   return (
     <figure
       className={cx(
@@ -17,12 +17,14 @@ export default function PullQuote({ text, cite, tone = 'default', className }) {
         className,
       )}
     >
-      <span
-        aria-hidden="true"
-        className="absolute top-2 left-4 font-heading text-6xl leading-none opacity-30 select-none md:left-6"
-      >
-        “
-      </span>
+      {showQuote && (
+        <span
+          aria-hidden="true"
+          className="absolute top-2 left-4 font-heading text-6xl leading-none opacity-30 select-none md:left-6"
+        >
+          “
+        </span>
+      )}
       <blockquote className="relative font-heading text-h3 font-medium md:text-h2">
         {renderInline(text)}
       </blockquote>

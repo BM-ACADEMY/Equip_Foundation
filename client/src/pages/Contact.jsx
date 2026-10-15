@@ -239,12 +239,25 @@ export default function Contact() {
               <p className="text-small font-semibold tracking-wide text-ink-muted uppercase">
                 {contact.labels.phone}
               </p>
-              <a
-                href={`tel:${phone.replace(/[^\d+]/g, '')}`}
-                className="mt-1 block text-lead font-medium text-brand-700 underline-offset-4 hover:underline"
-              >
-                {phone}
-              </a>
+              <div className="mt-1 flex flex-wrap items-center gap-x-1 text-lead font-medium text-brand-700">
+                {phone.split('/').map((num, idx, arr) => {
+                  const trimmed = num.trim()
+                  const cleanTel = trimmed.replace(/[^\d+]/g, '')
+                  return (
+                    <span key={trimmed} className="inline-flex items-center">
+                      <a
+                        href={`tel:${cleanTel}`}
+                        className="underline-offset-4 hover:underline"
+                      >
+                        {trimmed}
+                      </a>
+                      {idx < arr.length - 1 && (
+                        <span className="mx-2 text-ink-muted select-none">/</span>
+                      )}
+                    </span>
+                  )
+                })}
+              </div>
             </div>
           )}
           <div className="sm:col-span-2">

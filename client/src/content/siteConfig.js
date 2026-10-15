@@ -50,8 +50,8 @@ export const siteConfig = {
   },
 
   contact: {
-    email: '[Official Email Address]',
-    phone: '[Contact Number]',
+    email: 'equipfoundationindia@gmail.com',
+    phone: '9047677189 / 9962734543',
   },
 
   socials: [

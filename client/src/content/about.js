@@ -36,7 +36,7 @@ export const missionVisionValues = {
   },
   mission: {
     title: 'Our Mission',
-    text: '“To empower vulnerable communities by creating opportunities, fostering inclusion and resilience, and driving collective action for lasting change.”',
+    text: 'To empower vulnerable communities by creating opportunities, fostering inclusion and resilience, and driving collective action for lasting change.',
   },
   valuesTitle: 'Our Values',
   values: [

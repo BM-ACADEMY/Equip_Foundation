@@ -156,12 +156,18 @@ export default function Footer() {
                   {showPhone && (
                     <li>
                       {contact.labels.phone}:{' '}
-                      <a
-                        href={`tel:${phone.replace(/[^\d+]/g, '')}`}
-                        className={linkClass}
-                      >
-                        {phone}
-                      </a>
+                      {phone.split('/').map((num, idx, arr) => {
+                        const trimmed = num.trim()
+                        const cleanTel = trimmed.replace(/[^\d+]/g, '')
+                        return (
+                          <span key={trimmed}>
+                            <a href={`tel:${cleanTel}`} className={linkClass}>
+                              {trimmed}
+                            </a>
+                            {idx < arr.length - 1 && ' / '}
+                          </span>
+                        )
+                      })}
                     </li>
                   )}
                 </ul>

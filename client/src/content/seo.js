@@ -82,7 +82,7 @@ export const seo = {
   '/about/team': {
     title: `Our Team — ${SITE}`,
     description: truncate(
-      `Meet the ${team.trustees.length}-member ${team.boardTitle} of ${SITE}.`,
+      `Meet the ${(team.allTrustees || team.trustees).length}-member ${team.boardTitle} of ${SITE}.`,
     ),
   },
   '/about/annual-reports': {

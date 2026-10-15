@@ -13,7 +13,7 @@ export default function History() {
     <>
       <PageHero title={history.title} />
 
-      <Section>
+      <Section className="pt-6 lg:pt-8">
         <div className="grid gap-6 lg:grid-cols-2">
           {history.paragraphs.map((paragraph) => (
             <Card key={paragraph} padding="none" className="p-6 md:p-8">

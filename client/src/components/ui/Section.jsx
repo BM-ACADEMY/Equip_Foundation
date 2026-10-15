@@ -28,12 +28,15 @@ export default function Section({
   const hasHeading = eyebrow || title || intro
   const onDark = tone === 'brand'
   const Wrapper = reveal ? Reveal : 'div'
+  const hasCustomPadding = className && (className.includes('pt-') || className.includes('py-') || className.includes('p-'))
 
   return (
     <Tag
       id={id}
       className={cx(
-        'scroll-mt-24 py-section lg:py-section-lg',
+        'scroll-mt-24',
+        !hasCustomPadding && 'py-section lg:py-section-lg',
+        hasCustomPadding && !className.includes('pb-') && !className.includes('py-') && 'pb-section lg:pb-section-lg',
         tones[tone],
         className,
       )}
